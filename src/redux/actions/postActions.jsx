@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { setPostDetails, setMovieData } from "../reducers/postReducer";
+import { setMovieDetails, setMovieData } from "../reducers/postReducer";
 
 export const getAllMovies = () => async (dispatch) => {
   try {
@@ -22,12 +22,18 @@ export const getAllMovies = () => async (dispatch) => {
     toast.error(error.message);
   }
 };
-export const getPostDetails = (id) => async (dispatch) => {
+export const getMovieDetails = (id) => async (dispatch) => {
   try {
+    const token = localStorage.getItem("token");
     const response = await axios.get(
-      `https://jsonplaceholder.typicode.com/posts/${id}`
+      `https://shy-cloud-3319.fly.dev/api/v1/movie/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      }
     );
-    dispatch(setPostDetails(response.data));
+    dispatch(setMovieDetails(response.data));
   } catch (error) {
     if (axios.isAxiosError(error)) {
       toast.error(error.response.data.message);

@@ -2,7 +2,6 @@ import { AiFillLike, AiOutlineArrowRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "../assets/styles/ListMovie.css";
 import { useEffect } from "react";
-import { useState } from "react";
 import { getAllMovies } from "../redux/actions/postActions";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -10,7 +9,6 @@ function ListMovie() {
   const dispatch = useDispatch();
   
   const movie = useSelector((state) => {
-    console.log(state);
     return state.post.movie.data;
   });
 

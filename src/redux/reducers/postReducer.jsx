@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   movie: [],
-  postDetails: null,
+  movieDetails: null,
 };
 
 const postSlice = createSlice({
@@ -12,11 +12,11 @@ const postSlice = createSlice({
     setMovieData: (state, action) => {
       state.movie= action.payload;
     },
-    setPostDetails: (state, action) => {
-      state.postDetails = action.payload;
+    setMovieDetails: (state, action) => {
+      state.movieDetails = action.payload;
     },
   },
 });
 
-export const { setMovieData, setPostDetails } = postSlice.actions;
+export const { setMovieData, setMovieDetails } = postSlice.actions;
 export default postSlice.reducer;

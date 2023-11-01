@@ -2,42 +2,44 @@ import React from "react";
 import "../assets/styles/Details.css";
 import { AiOutlineStar } from "react-icons/ai";
 import { FiPlayCircle } from "react-icons/fi";
-import { useNavigation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-import getDetailsMovie from "../api/getDetailsMovie";
-import Loading from "../components/Loading";
+import { getMovieDetails } from "../redux/actions/postActions";
+import { useDispatch, useSelector } from "react-redux";
+
 
 function Details() {
-  const [detailMovie, setDetailMovie] = useState({});
+  // const [detailMovie, setDetailMovie] = useState({});
   const { id } = useParams();
+  const dispatch = useDispatch();
+  
+  const detailMovie = useSelector((state) => {
+    console.log(state.post);
+    return state.post.movieDetails;
+  });
 
   useEffect(() => {
-    const getDetails = async () => {
-      const detail = await getDetailsMovie(id);
-      setDetailMovie(detail);
-    };
+    dispatch(getMovieDetails(id));
+  }, [dispatch]);
 
-    getDetails();
-  }, [detailMovie]);
-
-  return (
+  return detailMovie === null ? (<></>) : (
     <div className="vh-100 bg-dark">
       <img
         className="object-fit-cover w-100 h-100 position-absolute"
-        src={`https://image.tmdb.org/t/p/w1280${detailMovie.backdrop_path}`}
+        src={`https://image.tmdb.org/t/p/w1280${detailMovie.data.backdrop_path}`}
       />
 
       <div className="detail flex d-flex flex-column justify-content-center vh-100 m-0 position-relative z-1 text-light">
         <div className="w-50">
-          <h1>{detailMovie.title}</h1>
+          <h1>{detailMovie.data.title}</h1>
           <p>
-            Release date : <span>{detailMovie.release_date}</span>
+            Release date : <span>{detailMovie.data.release_date}</span>
           </p>
-          <p>{detailMovie.overview}</p>
+          <p>{detailMovie.data.overview}</p>
           <p>
             <AiOutlineStar className="yellow-icon" />{" "}
-            <span>{detailMovie.vote_average}</span>
+            <span>{detailMovie.data.vote_average}</span>
           </p>
           <button
             type="button"
