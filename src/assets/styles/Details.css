@@ -1,0 +1,12 @@
+.bg-image {
+  background-image: url(`https://image.tmdb.org/t/p/w500${detailMovie.backdrop_path}`);
+}
+.btn {
+  width: fit-content;
+}
+.yellow-icon{
+  color: rgb(167, 167, 5);
+}
+.detail{
+  margin-left: 5%;
+}

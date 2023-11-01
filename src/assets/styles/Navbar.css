@@ -1,0 +1,34 @@
+.form-control::placeholder{
+    color: rgb(235, 227, 227);
+}
+
+.form-control:focus::placeholder {
+    color: transparent; /* Membuat warna placeholder transparan saat input di klik */
+}
+.form-control{
+    padding-left: 40px;
+}
+.navbar-brand{
+    color: #dc060e;
+    font-size: 2.5em;
+}
+.white-icon{
+    color: aliceblue;
+}
+.search{
+    position: absolute;
+    left: 400px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+/* Header */
+#myHeader {
+    transition: background-color 0.3s ease-in-out;
+}
+
+#myHeader.scrolled {
+    background-color: #08070b; /* Ganti dengan warna latar belakang yang Anda inginkan saat di-scroll */
+}

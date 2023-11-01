@@ -1,0 +1,51 @@
+#list .row .card {
+  width: 13rem;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#list .row .card:hover {
+  transform: scale(1.1); /* Mengubah ukuran elemen saat hover */
+  box-shadow: 5px 5px 10px #dc060d5d;
+}
+.red-icon{
+    color: #ffffff;
+}
+.card{
+  background-color: rgba(0, 0, 0, 0.265);
+}
+.detail{
+  background-color: rgba(0, 0, 0, 0.431);
+  padding: 8em;
+}
+
+.task{
+  background-color: rgba(0, 0, 0, 0.687);
+  padding: 8em;
+}
+
+.dua{
+  background-color: black;
+  padding: 8em;
+}
+h4{
+  font-size: 1.3em;
+}
+/* Header */
+#myHeader {
+  transition: background-color 0.3s ease-in-out;
+}
+
+#myHeader.scrolled {
+  background-color: #08070b; /* Ganti dengan warna latar belakang yang Anda inginkan saat di-scroll */
+}
+.image{
+  width: 40%;
+  height: 50%;
+  margin-right: 5em;
+}
+.imageTwo{
+  width: 40%;
+  height: 50%;
+  margin-left: 5em;
+}
