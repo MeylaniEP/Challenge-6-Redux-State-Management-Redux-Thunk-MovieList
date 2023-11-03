@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import axios from "axios";
 import image from "../image/backDrop.jpg";
 import "../assets/styles/Registrasi.css";
 import { Link } from "react-router-dom";
@@ -12,7 +11,6 @@ function Registrasi() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [validation, setValidation] = useState([]);
   
   const dispacth = useDispatch();
@@ -33,6 +31,7 @@ function Registrasi() {
     <div className="vh-100">
         <div>
           <img
+          loading="lazy"
             src={image}
             className="object-fit-cover w-100 h-100 position-absolute"
             alt="https://unsplash.com/photos/BQTHOGNHo08"
@@ -90,18 +89,6 @@ function Registrasi() {
                 {validation.password && (
                   <div className="alert alert-danger">
                     {validation.password[0]}
-                  </div>
-                )}
-                <input
-                  className="rounded from-control w-100 border-0 p-2 mb-3"
-                  type="password"
-                  value={passwordConfirmation}
-                  onChange={(e) => setPasswordConfirmation(e.target.value)}
-                  placeholder="Konfirmation Password"
-                />
-                {validation.passwordConfirmation && (
-                  <div className="alert alert-danger">
-                    {validation.passwordConfirmation[0]}
                   </div>
                 )}
                 <button className="btn btn-danger w-100 mt-2 p-0 d-flex justify-content-center">

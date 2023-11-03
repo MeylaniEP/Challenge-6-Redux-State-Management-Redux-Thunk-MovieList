@@ -3,14 +3,13 @@ import "../assets/styles/Details.css";
 import { AiOutlineStar } from "react-icons/ai";
 import { FiPlayCircle } from "react-icons/fi";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
 import { useEffect } from "react";
-import { getMovieDetails } from "../redux/actions/postActions";
 import { useDispatch, useSelector } from "react-redux";
+import { getMovieDetails } from "../redux/actions/movieActions";
+
 
 
 function Details() {
-  // const [detailMovie, setDetailMovie] = useState({});
   const { id } = useParams();
   const dispatch = useDispatch();
   

@@ -1,8 +1,21 @@
 import { Link, useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import "../assets/styles/Navbar.css";
+import { useDispatch } from "react-redux";
+import { getAllMovies } from "../redux/actions/movieActions";
+
+
 
 function Navbar() {
+  const dispatch = useDispatch();
+  
+  const handlerSearch = (e) => {
+    e.preventDefault();
+    const inputedValue = document.querySelector("#pencarian")
+    dispatch(getAllMovies(inputedValue.value));
+  }
+  
+  
   const navigate = useNavigate();
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -43,6 +56,7 @@ function Navbar() {
               className="col-4 col-lg-4  mb-lg-0 me-lg-3 position-relative"
               role="search"
               method="get"
+              onSubmit={handlerSearch}
             >
               <input
                 id="pencarian"
@@ -53,6 +67,7 @@ function Navbar() {
                 name="q"
               />
             </form>
+
             <div className="m-0">
               <Link to={"/account"}>
                 <button className="rounded-3 btn btn-outline-danger fw-bold">

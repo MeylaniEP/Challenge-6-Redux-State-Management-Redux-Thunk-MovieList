@@ -1,9 +1,10 @@
 import { AiFillLike, AiOutlineArrowRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import "../assets/styles/ListMovie.css";
 import { useEffect } from "react";
-import { getAllMovies } from "../redux/actions/postActions";
 import { useDispatch, useSelector } from "react-redux";
+import { getAllMovies } from "../redux/actions/movieActions";
+import "../assets/styles/ListMovie.css";
+
 
 function ListMovie() {
   const dispatch = useDispatch();

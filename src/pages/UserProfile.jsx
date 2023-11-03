@@ -1,34 +1,33 @@
 import React, { useState, useEffect } from "react";
-import getUserData from "../api/getUserAccount";
 import image from "../image/backDrop.jpg";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getMe, logout } from "../redux/actions/authActions";
 
 function UserProfile() {
-  const [userData, setUserData] = useState({});
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const userData = useSelector((state) => {
+    console.log(state);
+    return state.auth.user;
+  });
   useEffect(() => {
-    const getData = async () => {
-      setUserData((await getUserData()).data);
-    };
-
-    getData();
-  }, []);
+    dispatch(getMe(navigate, "/account", "/errorPath"));
+  }, [dispatch, navigate]);
 
   const handlerLogout = () => {
-    if (localStorage.getItem("token")) {
-      localStorage.removeItem("token");
-      navigate("/wellcome");
-    }
+    dispatch(logout(navigate));
   };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
       <img
-            src={image}
-            className="object-fit-cover w-100 h-100 position-absolute"
-            alt="https://unsplash.com/photos/BQTHOGNHo08"
-          />
+        loading="lazy"
+        src={image}
+        className="object-fit-cover w-100 h-100 position-absolute"
+        alt="https://unsplash.com/photos/BQTHOGNHo08"
+      />
       <div className="d-flex flex-column p-5 bg-dark rounded-3 text-light z-1">
         <h3>Your Account</h3>
         <div className="d-flex flex-row h-100 gap-4 border-top py-5">
@@ -41,13 +40,15 @@ function UserProfile() {
             <input
               type="text"
               className="p-2 border-0 rounded-2 mb-4"
-              value={userData.name}
+              defaultValue={userData ? userData.name : ""}
+              readOnly
               id=""
             />
             <input
               type="text"
               className="p-2 border-0 rounded-2 mb-4"
-              value={userData.email}
+              defaultValue={userData ? userData.email : ""}
+              readOnly
               id=""
             />
           </div>

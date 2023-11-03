@@ -32,6 +32,7 @@ function Login() {
       <div className="vh-100">
           <div>
             <img
+            loading="lazy"
             src={image}
             className="object-fit-cover w-100 h-100 position-absolute"
             alt="https://unsplash.com/photos/BQTHOGNHo08"

@@ -4,8 +4,6 @@ import { setIsLoggedIn, setToken, setUser } from "../reducers/authReducers";
 
 export const registerLoginWithGoogle =
 (accessToken, navigate) => async (dispatch) => {
-    console.log("Login terpanggil")
-    
     try {
       let data = JSON.stringify({
         access_token: accessToken,
@@ -28,7 +26,6 @@ export const registerLoginWithGoogle =
       dispatch(setIsLoggedIn(true));
       dispatch(getMe(null, null, null));
 
-      // We will use navigate from react-router-dom by passing the argument because the useNavigate() can only used in component
       navigate("/");
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -40,14 +37,12 @@ export const registerLoginWithGoogle =
   };
 
 export const logout = (navigate) => (dispatch) => {
-  console.log("Logout berhasil")
-
   try {
     dispatch(setToken(null));
     dispatch(setIsLoggedIn(false));
     dispatch(setUser(null));
 
-    if (navigate) navigate("/");
+    if (navigate) navigate("/wellcome");
   } catch (error) {
     toast.error(error?.message);
   }
@@ -73,15 +68,12 @@ export const getMe =
 
       dispatch(setUser(data));
 
-      // if navigatePath params is false/null/undefined, it will not executed
       if (navigatePath) navigate(navigatePath);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        // If not valid token
         if (error.response.status === 401) {
           dispatch(logout(null));
 
-          // if navigatePathError params is false/null/undefined, it will not executed
           if (navigatePathError) navigate(navigatePathError);
           return;
         }

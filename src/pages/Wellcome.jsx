@@ -62,6 +62,7 @@ function Wellcome() {
 
         <section className="hero">
           <img
+          loading="lazy"
             src={backDrop}
             className="object-fit-cover w-100 h-100 position-absolute"
             alt="https://unsplash.com/photos/BQTHOGNHo08"
